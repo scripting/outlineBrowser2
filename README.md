@@ -4,7 +4,7 @@ JavaScript code to display JSON outlines.
 
 ### Status of the project
 
-I forked this from the previous outlineBrowser written years ago. 
+I forked this from the <a href="https://github.com/scripting/outlineBrowser">previous outlineBrowser</a> written years ago. 
 
 I want to be able to fix stuff without worrying about backward compatibility.
 
