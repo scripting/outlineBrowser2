@@ -397,7 +397,7 @@ function renderOutlineBrowser (outline, flMarkdown, urlPermalink, permalinkStrin
 						}
 					}
 				}
-			add ("<ul class=\"ulOutlineList" + ulAddedClass + " ulLevel" + outlinelevel + "\" id=\"idOutlineLevel" + outlineBrowserData.serialNum++ + "\"" + style + ">"); indentlevel++; outlinelevel++;
+			add ("<ul class=\"ulOutlineList ulLevel" + outlinelevel + ulAddedClass + "\" id=\"idOutlineLevel" + outlineBrowserData.serialNum++ + "\"" + style + ">"); indentlevel++; outlinelevel++;
 			for (var i = 0; i < outline.subs.length; i++) {
 				var child = outline.subs [i], flchildcollapsed = getBoolean (child.collapse), img = getImgHtml (child);
 				
