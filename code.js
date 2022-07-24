@@ -1,5 +1,5 @@
 var outlineBrowserData = {
-	version: "0.6.0",
+	version: "0.6.1",
 	serialNum: 0,
 	flTextBasedPermalinks: true, //1/26/17 by DW
 	flProcessEmoji: true, //7/3/17 by DW
@@ -38,7 +38,6 @@ function applyExpansionState (theList) {
 		$(idLevel).css ("display", "block");
 		}
 	}
-
 function ecOutline (idnum) { 
 	var c = document.getElementById ("idOutlineWedge" + idnum), idUL = "#idOutlineLevel" + idnum;
 	if (c.className == "fa fa-caret-down") {
@@ -365,18 +364,46 @@ function renderOutlineBrowser (outline, flMarkdown, urlPermalink, permalinkStrin
 		return (" class=\"" + myClass + "\"");
 		}
 	
+	function getNodeText (theNode) { //7/24/22 by DW
+		function getInlineImage (theText, urlImage) {
+			return ("<div class=\"divInlineImage\"><center><img class=\"imgInline\" src=\"" + urlImage + "\"></center>" + theText + "</div>");
+			}
+		function getImageHtml (theNode) {
+			var imgHtml = "";
+			if (theNode.image !== undefined) {
+				imgHtml = "<img class=\"imgRightMargin\" src=\"" + theNode.image + "\" border=\"0\" style=\"float: right; padding-left: 25px; padding-bottom: 10px; padding-top: 10px; padding-right: 15px;\">";
+				if (theNode.imageLink !== undefined) { //5/26/20 by DW
+					imgHtml = "<a class=\"anchorRightMargin\" href=\"" + theNode.imageLink + "\">" + imgHtml + "</a>";
+					}
+				}
+			return (imgHtml);
+			}
+		var theText = theNode.text;
+		if (theNode.inlineimage !== undefined) {
+			theText = getInlineImage (theText, theNode.inlineimage);
+			}
+		else {
+			if (theNode.image !== undefined) {
+				theText = getImageHtml (theNode) + theText;
+				}
+			}
+		return (theText);
+		}
+	
 	function addChildlessSub (theNode, path) { //5/20/15 by DW
+		var theText = getNodeText (theNode); //7/24/22 by DW
+		console.log ("addChildlessSub");
 		if (typeIsDoc (theNode)) {
-			add ("<li><div " + getOutlineTextClass (theNode) + "><a href=\"" + path + "\">" + theNode.text + "</a>" + getNodePermalink (theNode) + "</div></li>");
+			add ("<li><div " + getOutlineTextClass (theNode) + "><a href=\"" + path + "\">" + theText + "</a>" + getNodePermalink (theNode) + "</div></li>");
 			}
 		else {
 			var type = getNodeType (theNode);
 			switch (type) {
 				case "link":
-					add ("<li><div " + getOutlineTextClass (theNode) + "><a href=\"" + theNode.url + "\">" + theNode.text + "</a>" + getNodePermalink (theNode) + "</div></li>");
+					add ("<li><div " + getOutlineTextClass (theNode) + "><a href=\"" + theNode.url + "\">" + theText + "</a>" + getNodePermalink (theNode) + "</div></li>");
 					break;
-				default:
-					add ("<li><div " + getOutlineTextClass (theNode) + ">" + theNode.text + getNodePermalink (theNode) + "</div></li>");
+				default: //7/24/22 by DW
+					add ("<li><div " + getOutlineTextClass (theNode) + ">" + theText + getNodePermalink (theNode) + "</div></li>");
 					break;
 				}
 			}
@@ -451,8 +478,9 @@ function renderOutlineBrowser (outline, flMarkdown, urlPermalink, permalinkStrin
 		outlineBrowserData.serialNum++; //9/22/14 by DW
 		}
 	else {
+		var theText = getNodeText (outline); //7/24/22 by DW
 		add ("<div class=\"divRenderedOutline\">"); indentlevel++;
-		add ("<div class=\"divItemDescription\">" + hotUpText (outline.text, outline.url) + permalink + "</div>");
+		add ("<div class=\"divItemDescription\">" + hotUpText (theText, outline.url) + permalink + "</div>");
 		add ("</div>"); indentlevel--;
 		}
 	

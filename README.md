@@ -12,7 +12,5 @@ Older code uses the first version of the outlineBrowser code, preserved in <a hr
 
 ### Updates
 
-5/30/22 by DW
-
-Fixed display of flCodeSubs sub-outlines. 
+See the <a href="worknotes.md">worknotes</a> page.
 
