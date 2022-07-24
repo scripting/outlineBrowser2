@@ -392,7 +392,6 @@ function renderOutlineBrowser (outline, flMarkdown, urlPermalink, permalinkStrin
 	
 	function addChildlessSub (theNode, path) { //5/20/15 by DW
 		var theText = getNodeText (theNode); //7/24/22 by DW
-		console.log ("addChildlessSub");
 		if (typeIsDoc (theNode)) {
 			add ("<li><div " + getOutlineTextClass (theNode) + "><a href=\"" + path + "\">" + theText + "</a>" + getNodePermalink (theNode) + "</div></li>");
 			}
