@@ -74,7 +74,7 @@
 	display: inline;
 	border: none;
 	color: black;
-	font-size: .85em;
+	font-size: 15px; /* 3/13/24 by DW */
 	white-space: normal;
 	}
 .divRenderedOutline .divOutlineText a {
@@ -88,6 +88,10 @@
 .ulNumberedSubs li {
 	list-style-type: decimal;
 	margin-left: 20px;
+	}
+.ulNumberedSubs li::marker { /* 9/3/24 by DW */ 
+	font-family: "Ubuntu";
+	font-size: 20px;
 	}
 .ulBulletedSubs li {
 	list-style-type: square;

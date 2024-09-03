@@ -1,4 +1,12 @@
-# Worknotes
+#### 9/3/24; 11:23:56 AM by DW
+
+Added CSS that makes the numbers on numbered subs smaller. 
+
+For this.how posts there's some CSS in the template that makes them HUGE. 
+
+Still have work to do to sort this out. I have a project coming up that I will do that in. 
+
+Still diggin! :-)
 
 #### 7/24/22 by DW -- v0.6.1
 
